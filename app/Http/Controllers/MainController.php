@@ -61,4 +61,18 @@ class MainController extends Controller
         $product->save();
         return redirect('main/dashboard');
     }
+
+    public function edit($id) {
+        $product = Product::findOrFail($id);
+        return view('alter-produto', compact('product'));
+    }
+
+    public function update(Request $request, $id) {
+        $product = Product::findOrFail($id); 
+        $product->name = $request->name;
+        $product->sku = $request->sku;
+        $product->quantity = $request->quantity;
+        $product->save();
+        return redirect('main/dashboard');
+    }
 }

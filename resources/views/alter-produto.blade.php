@@ -26,51 +26,19 @@
      <br>
      <br>
      <br>
-     <center><b>Listagem de produtos</b></center>
+     <center><b>Alterar produto</b></center>
      <br>
-     <table class="table table-hover">
-      <thead>
-          <tr>
-              <th id="center">Código</th>
-              <th>Nome</th>
-              <th>SKU</th>
-              <th id="center">Quantidade</th>
-              <th id="center">Ações</th>                
-          </tr>
-      </thead>
-      <tbody>
-          @foreach($produtos as $produto)
-          <tr>
-              <td id="center">{{$produto->id}}</td>
-              <td title="Nome">{{$produto->name}}</td>
-              <td title="Descrição">{{$produto->sku}}</td>
-              <td title="Quantidade" id="center">{{$produto->quantity}}</td>
-              <td id="center">
-                <a href="{{route('product.edit', $produto->id)}}" 
-                                               data-toggle="tooltip" 
-                                               data-placement="top"
-                                               title="Alterar">Alterar</a>
-              </td>           
-          </tr>
-          @endforeach
-      </tbody>
-    </table>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div class="success-block">
-      <center><b>Cadastrar produto</b></center>
-      <br>
       <form method="post" 
-            action="{{route('product.store')}}" 
+            action="{{route('product.update', $product->id)}}"
             enctype="multipart/form-data">
+          {!! method_field('put') !!}
           {{ csrf_field() }}
           <div class="col-md-6">              
               <div class="form-group">
                   <label for="name">Nome</label>
                   <input type="text" name="name" 
                          class="form-control" 
+                         value="{{$product->name}}"
                          required>
               </div>
           </div>
@@ -79,6 +47,7 @@
                   <label for="sku">SKU</label>
                   <input type="text" name="sku" 
                          class="form-control" 
+                         value="{{$product->sku}}"
                          required>
               </div>
           </div>
@@ -87,6 +56,7 @@
                   <label for="quantity">Quantidade</label>
                   <input type="number" name="quantity" 
                          class="form-control" 
+                         value="{{$product->quantity}}"
                          required>
               </div>    
           </div>                                   
@@ -96,12 +66,10 @@
               </button>
               <button type="submit" 
                       class="btn btn-warning" id="black">
-                  Cadastrar
+                  Alterar
               </button>
           </div>
       </form>
-      <br>
-      <br>
     </div>
    @else
     <script>window.location = "/main";</script>
