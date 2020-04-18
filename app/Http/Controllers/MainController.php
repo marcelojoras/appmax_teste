@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Auth;
 use App\User;
+use App\Product;
 use Illuminate\Support\Facades\Hash;
 
 class MainController extends Controller
@@ -33,7 +34,9 @@ class MainController extends Controller
     }
 
     function successlogin(){
-    	return view('dashboard');
+        $produtos = Product::all();
+        $total = Product::all()->count();
+    	return view('dashboard', compact('produtos', 'total'));
     }
 
     function logout(){
@@ -48,5 +51,14 @@ class MainController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         return back()->with('user_criado', 'Usuário criado com sucesso! Faça login com ele');
+    }
+
+    public function store(Request $request) {
+        $product = new Product;
+        $product->name = $request->name;
+        $product->sku = $request->sku;
+        $product->quantity = $request->quantity;
+        $product->save();
+        return redirect('main/dashboard');
     }
 }

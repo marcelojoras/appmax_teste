@@ -20,3 +20,5 @@ Route::post('/main/checklogin', 'MainController@checklogin');
 Route::post('/main/createUser', 'MainController@createUser');
 Route::get('main/dashboard', 'MainController@successlogin');
 Route::get('main/logout', 'MainController@logout');
+
+Route::resource('product', 'MainController');
