@@ -75,4 +75,10 @@ class MainController extends Controller
         $product->save();
         return redirect('main/dashboard');
     }
+
+    public function destroy($id) {
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return redirect('main/dashboard');
+    }
 }

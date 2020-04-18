@@ -50,6 +50,15 @@
                                                data-toggle="tooltip" 
                                                data-placement="top"
                                                title="Alterar">Alterar</a>
+                 &nbsp;<form style="display: inline-block;" method="POST" 
+                          action="{{route('product.destroy', $produto->id)}}"                                                        
+                          data-toggle="tooltip" data-placement="top"
+                          title="Excluir" 
+                          onsubmit="return confirm('Confirma?')">
+                  {{method_field('DELETE')}}{{ csrf_field() }}                                                
+                  <button type="submit" style="background-color: #fff">
+                      <a>Dar Baixa</i></a>                                                    
+                  </button></form></td>
               </td>           
           </tr>
           @endforeach
